@@ -64,6 +64,7 @@ const CourseList = ({currentUser}) => {
     fetchCourses();
   }, []);
 
+
   const handleEnroll = async (courseId) => {
     try {
       const courseRef = doc(db, 'courses', courseId);
