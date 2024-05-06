@@ -14,11 +14,14 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
+      console.log("user",user)
+      console.log("currentUser",currentUser)
     });
 
     return unsubscribe; // Cleanup function to unsubscribe from the observer
   }, []);
-
+  console.log("currentUser outside effect:", currentUser); // Check the value of currentUser outside the effect
+  
   return (
     <>
     <Router>
@@ -34,7 +37,7 @@ function App() {
         />
         <Route
           path="/courselist"
-          element={currentUser ? <CourseList /> : <Navigate to="/signin" />}
+          element={currentUser ? <CourseList currentUser={currentUser} /> : <Navigate to="/signin" />}
         />
 
       </Routes>
