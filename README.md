@@ -18,3 +18,5 @@ This project is built using React.js for frontend, tailwind CSS for styling and 
 3. User authentication 
 4. Responsiveness on desktop and mobile screen
 
+### Setting up the project
+For seeting this project to your local machine, just fork this repository and use ```git clone <URL>``` command to clone this project and then open it in VS Code. Then, be in the root directory and run ```npm i``` command to install all the dependencies. Once all the dependencies are installed finally run ```npm run dev``` command to start the project and then the project will be available on the localhost. 
