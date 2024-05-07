@@ -12,11 +12,8 @@ Here is the deployed project:
 ### Tech-stack and features
 This project is built using React.js for frontend, tailwind CSS for styling and Firebase to add backend.
 #### Features include
-- Search functionality
-- Updating the backend based on the user interaction with UI  
-  
+1. Search functionality for the courses.
+2. Updating the backend based on the user interaction and showing it on frontend.
+3. User authentication 
+4. Responsiveness on desktop and mobile screen
 
-
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
