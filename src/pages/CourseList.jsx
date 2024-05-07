@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Link } from "react-router-dom";
+import { getDatabase, ref, onValue, update, child, get } from 'firebase/database';
 
 const CourseList = ({ currentUser }) => {
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCourses, setFilteredCourses] = useState([]);
+  const [likes, setLikes] = useState(0);
+  const [unsubscribeMap, setUnsubscribeMap] = useState({}); // Define unsubscribe
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -49,6 +52,46 @@ const CourseList = ({ currentUser }) => {
       console.error('Error enrolling in course:', error);
     }
   };
+  
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const db = getDatabase();
+      const likesRef = ref(db, 'likes'); // Reference to the 'likes' node in the database
+  
+      // Listen for changes to the likes count in real-time
+      const unsubscribe = onValue(likesRef, (snapshot) => {
+        const likesData = snapshot.val() || {};
+        setLikes(likesData);
+      });
+  
+      // Cleanup function to unsubscribe from the listener when component unmounts
+      return () => unsubscribe();
+    };
+    fetchLikes();
+  }, []);
+  
+
+  //Like feature
+  const handleLike = (courseId) => {
+    const db = getDatabase();
+    const likesRef = ref(db, 'likes'); // Reference to the 'likes' node in the database  
+    // Get the current likes count for the specified course ID
+    const currentLikesRef = child(likesRef, courseId);  
+    // Increment the likes count
+    get(currentLikesRef)
+      .then((snapshot) => {
+        const currentLikes = snapshot.val() || 0;
+        const updatedLikes = currentLikes + 1;
+        // Update the likes count in the database
+        update(likesRef, { [courseId]: updatedLikes })
+          .then(() => alert('Like added successfully'))
+          .catch((error) => console.error('Error adding like:', error));
+      })
+      .catch((error) => {
+        console.error('Error getting current likes count:', error);
+      });
+  };
+  
 
   return (
     <>
@@ -88,14 +131,21 @@ const CourseList = ({ currentUser }) => {
               <span className="text-gray-600">{course.location}</span>
 
               <div className="flex justify-end gap-7">
+                      
+           {/*Like feature  */}
+          <div >
+          <button className="py-2 px-2 rounded hover:bg-blue-600 bg-blue-400 text-white" onClick={() => handleLike(course.id)}>Likes count -</button>
+          <span className="ml-2">{likes[course.id]}</span> {/* Access likes count using course id */}
+        </div>
+
               <Link
                   to={`/courseDetail/${course.id}`}
                   className="py-2 px-4 rounded hover:bg-blue-600 bg-blue-500 text-white"
                 >
                   Details
                 </Link>
-
-              <button
+     
+             <button
            onClick={() => {handleEnroll(course.id)}}
            className={`py-2 px-4 rounded hover:bg-blue-600 ${course.enrolledUsers?.includes(currentUser.uid) ? 'bg-gray-300 text-black' : 'bg-blue-500 text-white'}`}
             >
