@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-do
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import CourseList from './pages/CourseList';
+import CourseDetail from './pages/CourseDetail';
 import Signin from './pages/Signin';
 import { auth } from './firebase';
 import './App.css'
@@ -28,10 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        {/* <Route path="/dashboard/*" element={<Dashboard currentUser={currentUser}/>} />
-        <Route path="/courselist" element={<CourseList />} /> */}
-
-<Route
+        <Route
           path="/dashboard/*"
           element={currentUser ? <Dashboard currentUser={currentUser} /> : <Navigate to="/signin" />}
         />
@@ -39,7 +37,7 @@ function App() {
           path="/courselist"
           element={currentUser ? <CourseList currentUser={currentUser} /> : <Navigate to="/signin" />}
         />
-
+        <Route path="/coursedetail/:id" element={<CourseDetail />} />
       </Routes>
     </Router>
     </>
