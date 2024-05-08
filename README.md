@@ -15,9 +15,9 @@ This project is built using React.js for frontend, tailwind CSS for styling and 
 #### Features include
 1. Search functionality for the courses.
 2. Updating the backend based on the user interaction and showing it on frontend.
-3. Like Cousres in realtime (it was my first time implementing firebase realtime database into a web app, initially was tough but I learned a lot and final result is nice experience for users as they can see the no. of likes on any courses getting increased in real time often lead to better decision making.)
+3. 🎁Bonus task : Like Courses in realtime (it was my first time implementing firebase realtime database into a web app, initially was tough but I learned a lot and final result is nice experience for users as they can see the no. of likes on any courses getting increased in real time often lead to better decision making.)
 4. User authentication 
 5. Responsiveness on desktop and mobile screen
 
 ### Setting up the project
-For seeting this project to your local machine, just fork this repository and use ```git clone <URL>``` command to clone this project and then open it in VS Code. Then, be in the root directory and run ```npm i``` command to install all the dependencies. Once all the dependencies are installed finally run ```npm run dev``` command to start the project and then the project will be available on the localhost. 
+For setting this project to your local machine, just fork this repository and use ```git clone <URL>``` command to clone this project and then open it in VS Code. Then, be in the root directory and run ```npm i``` command to install all the dependencies. Once all the dependencies are installed finally run ```npm run dev``` command to start the project and then the project will be available on the localhost. 
