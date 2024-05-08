@@ -5,7 +5,7 @@ This is a webapp that shows the courses to the user and users have access to thr
 
 Here is the deployed project: https://courses-website-jade.vercel.app/
 
-Demo video: Attaching in a while
+Demo video: Click [here](https://www.loom.com/share/a73cbf8080524896a71439a7d4f3b64b?sid=d1b0049d-de37-4be7-83d8-b0b3f32386d4)
 
 ### Flow of application
 - After getting signed up, users will be directed to their Dashboard. On the Dashboard, they can see all the courses to which they have enrolled and with that they can also mark the course as completed and it will also update the backend and then render the UI to show that course as completed to them. 
